@@ -1,0 +1,26 @@
+extends layout 
+
+block content 
+    h1= title
+    
+    form(action="" method="POST")
+        .form-group 
+            label(for="first_name") First Name:
+            input#first_name(type="text" name="first_name" required="true")
+        .form-group 
+            label(for="last_name") Last Name:
+            input#last_name(type="text" name="last_name" required="true")
+        .form-group 
+            label(for="email") Email:
+            input#email(type="email" name="email" require="true")
+        .form-group 
+            label(for="password") Password:
+            input#password(type="password" name="password" required="true")
+        .form-group 
+            label(for="password_confirm") Password Confirmation:
+            input#password_confirm(type="password" name="password_confirm" required="true")
+        button Sign Up
+    if errors 
+        ul
+            each error in errors 
+                li!= error.msg

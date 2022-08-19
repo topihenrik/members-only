@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  if currentUser
+    h1 Welcome, #{currentUser.fullname}!
+  else 
+    h1 Welcome, visitor!

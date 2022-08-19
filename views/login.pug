@@ -1,0 +1,13 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    form(action="" method="POST")
+        .form-group
+            label(for="email") Email: 
+            input#email(type="email" name="email" placeholder="Your email" required="true")
+        .form-group 
+            label(for="password") Password: 
+            input#password(type="password" name="password" required="true")
+        button Log In

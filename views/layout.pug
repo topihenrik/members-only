@@ -6,11 +6,14 @@ html
   body
     nav 
       ul.nav-ul 
-        li 
-          a(href="/signup") Signup
-        li 
-          a(href="/login") Login
         if currentUser 
           li
             a(href="/logout") Logout
+          li
+            a(href="/joinclub") Join the Club
+        else 
+          li 
+            a(href="/signup") Signup
+          li 
+            a(href="/login") Login
     block content

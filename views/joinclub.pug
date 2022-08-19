@@ -1,0 +1,15 @@
+extends layout 
+
+
+block content 
+    h1= title 
+
+    form(action="" method="POST")
+        .form-group
+            label(for="passphrase") Passphrase:
+            input#passphrase(type="text" name="passphrase" required="true")
+        button Submit
+    if errors 
+        ul 
+            each error in errors 
+                li!= error.msg

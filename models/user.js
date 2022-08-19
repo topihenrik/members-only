@@ -7,7 +7,8 @@ var UserSchema = new Schema(
         last_name: {type: String, required: true},
         email: {type: String, required: true},
         password: {type: String, required: true},
-        member_status: {type: String, required: true, enum: ["guest", "member"]}
+        member_status: {type: String, required: true, enum: ["guest", "member"]},
+        admin: {type: Boolean, default: false}
     }
 );
 

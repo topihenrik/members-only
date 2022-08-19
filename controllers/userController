@@ -2,8 +2,6 @@ const async = require("async");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const User = require("../models/user");
-
-
 const { body,validationResult } = require('express-validator');
 
 
@@ -76,3 +74,28 @@ exports.logout_get = (req, res, next) => {
         res.redirect("/");
     })
 }
+
+
+exports.joinclub_get = (req, res, next) => {
+    res.render("joinclub", {title: "Join the Club"})
+}
+
+exports.joinclub_post = [
+    body("passphrase", "Invalid passphrase.").equals("secret high fives"),
+
+    (req, res, next) => {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            // Errors. Rerender.
+            res.render("joinclub", {title: "Join the Club", errors: errors.array()})
+        } else {
+            // Passphrase was correct.
+            User.findByIdAndUpdate(req.user._id, {$set: {member_status: "member"}}, {}, (err, theuser) => {
+                if (err) return next(err);
+                res.redirect("/");
+            })
+        }
+
+    }
+]

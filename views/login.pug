@@ -1,13 +1,15 @@
 extends layout 
 
-block content 
-    h1= title 
+block content
+    .login-box
+        .form-title-box
+            h1= title 
 
-    form(action="" method="POST")
-        .form-group
-            label(for="email") Email: 
-            input#email(type="email" name="email" placeholder="Your email" required="true")
-        .form-group 
-            label(for="password") Password: 
-            input#password(type="password" name="password" required="true")
-        button Log In
+        form(action="" method="POST")
+            .form-group
+                label(for="email")
+                input#email(type="email" name="email" required="true" placeholder="Email")
+            .form-group 
+                label(for="password")
+                input#password(type="password" name="password" required="true" placeholder="Password")
+            button Log In

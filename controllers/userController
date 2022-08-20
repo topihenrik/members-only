@@ -7,7 +7,7 @@ const { body,validationResult } = require('express-validator');
 
 
 exports.signup_get = (req, res, next) => {
-    res.render("signup", {title: "Sign Up Form"});
+    res.render("signup", {title: "Sign Up"});
 }
 
 
@@ -29,7 +29,7 @@ exports.signup_post = [
 
         if(!errors.isEmpty()) {
             // Errrors. Rerender the form view.
-            res.render("signup", {title: "Sign Up Form", errors: errors.array()})
+            res.render("signup", {title: "Sign Up", errors: errors.array()})
         } else {
             // Form data is valid.
 
@@ -60,7 +60,7 @@ exports.signup_post = [
 
 
 exports.login_get = (req, res, next) => {
-    res.render("login", {title: "Log In Form"});
+    res.render("login", {title: "Log In"});
 }
 
 exports.login_post = passport.authenticate("local", {

@@ -1,28 +1,40 @@
 extends layout
 
 block content
-  if currentUser
-    h1 Welcome, #{currentUser.fullname}!
+  .welcome-text
+    if currentUser
+      h1 Welcome, #{currentUser.fullname}!
 
-    a(href="/new_message") Create a new message
-  else 
-    h1 Welcome, visitor!
+      a#msgnew(href="/new_message")
+        img(src="/icons/add.png")
+        span Create a new message
+    else 
+      h1 Welcome, visitor!
 
   main
     each message in list_message 
       .message-box
         .title-box 
           h2= message.title 
-        p= message.content
-        if !(currentUser === undefined) && (currentUser.member_status == "member")
-          p Author: #{message.author.fullname}
-          p Time: #{message.timestamp}
-          if currentUser.admin
-            form(action="/del_message" method="POST")
-              input(type="hidden", name="messageid" required="true" value=message._id)
-              button Delete
-        else 
-          p Author: Anonymous 
-          p Time: Unknown
+        p#content= message.content
+        .message-info
+          if !(currentUser === undefined) && (currentUser.member_status == "member")
+            if currentUser.admin
+              form(action="/del_message" method="POST")
+                input(type="hidden", name="messageid" required="true" value=message._id)
+                button#msgdel Delete
+            .author 
+              img(src="./icons/person.png")
+              p #{message.author.fullname}
+            .time
+              img(src="./icons/time.png")
+              p #{message.timestamp_formatted}
+          else
+            .author 
+              img(src="./icons/person.png") 
+              p Anonymous 
+            .time 
+              img(src="./icons/time.png")
+              p Unknown
         
   

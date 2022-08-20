@@ -4,16 +4,29 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    nav 
+    nav
+      a(href="/")
+        h1 Members Only 
       ul.nav-ul 
         if currentUser 
           li
-            a(href="/logout") Logout
-          li
-            a(href="/joinclub") Join the Club
+            a#logout(href="/logout")
+              img(src="./icons/logout.png")
+              span Logout
+          if currentUser.member_status == "guest"
+            li
+              a#joinclub(href="/joinclub")
+                img(src="./icons/groups.png")
+                span Join the Club
         else 
           li 
-            a(href="/signup") Signup
+            a#signup(href="/signup") 
+              img(src="./icons/login.png")
+              span Signup
           li 
-            a(href="/login") Login
+            a#login(href="/login")
+              img(src="./icons/login.png")
+              span Login
     block content
+    footer 
+      p Developed by topihenrik

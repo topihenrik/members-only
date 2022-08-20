@@ -1,20 +1,21 @@
 extends layout 
 
-block content 
-    h1= title 
-
-    form(action="" method="POST")
-        .form-group 
-            label(for="title") Title: 
-            input#title(type="text" name="title" required="true")
-        .form-group 
-            label(for="content") Message: 
-            input#content(type="textarea" name="content" required="true")
-        .form-group
-            label(for="goodmanners") I have good internet manners:
-            input#goodmanners(type="checkbox" required="true")
-        button Submit
-    if errors
-        ul
-        for error in errors
-            li!= error.msg
+block content
+    .newmessage-box
+        .form-title-box
+            h1= title 
+        form(action="" method="POST")
+            .form-group 
+                label(for="title") 
+                input#title(type="text" name="title" required="true" placeholder="Title")
+            .form-group 
+                label(for="content")
+                textarea#content(type="text" name="content" required="true" placeholder="Message")
+            .form-group#goodmanners-box
+                label(for="goodmanners") I have good internet manners:
+                input#goodmanners(type="checkbox" required="true")
+            button Submit
+        if errors
+            ul
+            for error in errors
+                li!= error.msg

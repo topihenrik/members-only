@@ -185,7 +185,7 @@ ul {
   display: flex;
   flex-direction: column;
   background-color: var(--tertiary);
-  /* padding: 25px; */
+  box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.3);
   gap: 20px;
   border-radius: 10px;
 }

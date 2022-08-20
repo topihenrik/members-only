@@ -8,6 +8,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const compression = require("compression");
+const helmet = require("helmet");
 require("dotenv").config();
 
 const User = require("./models/user");
@@ -17,7 +19,7 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
-
+app.use(helmet());
 
 // database setup
 const mongoDB = process.env.DEV_DB_URL;
@@ -80,6 +82,11 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 })
+
+
+app.use(compression());
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
